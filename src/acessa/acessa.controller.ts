@@ -19,16 +19,16 @@ export class AcessaController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.acessaService.findOne(+id);
+    return this.acessaService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAcessaDto: UpdateAcessaDto) {
-    return this.acessaService.update(+id, updateAcessaDto);
+    return this.acessaService.update(id, updateAcessaDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.acessaService.remove(+id);
+    return this.acessaService.remove(id);
   }
 }

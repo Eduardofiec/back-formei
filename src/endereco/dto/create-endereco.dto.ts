@@ -4,7 +4,7 @@ import {
 } from 'class-validator';
 
 export class CreateEnderecoDto {
-    id_endereco: number
+    id_endereco: string
     @Length(8,8)
     cep: string
     @Max(4)
@@ -13,7 +13,7 @@ export class CreateEnderecoDto {
     cidade: string
     @Length(5,50)
     bairro: string
-    constructor(id_endereco,cep,numero, cidade,bairro){
+    constructor(id_endereco: string,cep: string,numero: number, cidade: string,bairro: string){
         this.id_endereco=id_endereco;
         this.cep=cep;
         this.numero=numero;

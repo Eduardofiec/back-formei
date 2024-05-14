@@ -4,8 +4,8 @@ import {
     Matches
 } from 'class-validator';
 
-export class CreateClienteDto {
-    id_cliente:string;
+export class CreateAuthdto {
+    id:string;
     @Length(4,80)
     nome : string;
     @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {message: 'password too weak'})
@@ -14,8 +14,9 @@ export class CreateClienteDto {
     telefone : string;
     @IsEmail()
     email : string;
+    pass: string;
     constructor(id_cliente: string,nome: string,senha: string,telefone: string,email: string){
-        this.id_cliente = id_cliente
+        this.id = id_cliente
         this.nome = nome
         this.senha = senha
         this.telefone = telefone

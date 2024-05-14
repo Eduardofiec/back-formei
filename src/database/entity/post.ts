@@ -1,18 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryColumn, Column, ManyToMany } from "typeorm"
+import { cliente } from "./cliente"
 
 @Entity()
 export class post {
 
-    @PrimaryGeneratedColumn()
-    id_post: number
+    @PrimaryColumn()
+    id_post: string
 
     @Column()
     cod_img: string
 
     @Column()
     curtidas: number
-
-    @Column()
-    comentarios: string
-
 }

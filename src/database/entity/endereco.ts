@@ -1,10 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryColumn, Column } from "typeorm"
 
 @Entity()
 export class endereco {
 
-    @PrimaryGeneratedColumn()
-    id_endereco: number
+    @PrimaryColumn()
+    id_endereco: string
 
     @Column()
     cep: string

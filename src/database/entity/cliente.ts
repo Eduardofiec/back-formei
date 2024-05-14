@@ -1,10 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import { Entity, OneToMany, PrimaryGeneratedColumn, Column, PrimaryColumn, JoinTable} from "typeorm";
+import { post } from "./post";
 
 @Entity()
 export class cliente {
 
-    @PrimaryGeneratedColumn()
-    id_cliente: number
+    @PrimaryColumn()
+    id_cliente: string
 
     @Column()
     nome: string
@@ -17,5 +18,4 @@ export class cliente {
     
     @Column()
     email: string
-
 }

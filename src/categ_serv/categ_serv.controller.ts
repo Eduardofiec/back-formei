@@ -19,16 +19,16 @@ export class CategServController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.categServService.findOne(+id);
+    return this.categServService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCategServDto: UpdateCategServDto) {
-    return this.categServService.update(+id, updateCategServDto);
+    return this.categServService.update(id, updateCategServDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.categServService.remove(+id);
+    return this.categServService.remove(id);
   }
 }

@@ -1,16 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column, Double } from "typeorm"
+import { Entity, PrimaryColumn, Column, Double } from "typeorm"
 
 @Entity()
 export class acessa {
 
-    @PrimaryGeneratedColumn()
-    id_acessa: number
+    @PrimaryColumn()
+    id_acessa: string
 
     @Column()
     data: Date
 
     @Column()
-    hora: Date
+    hora: string
 
     @Column()
     endereco_mac: boolean

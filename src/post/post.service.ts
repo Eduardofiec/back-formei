@@ -3,12 +3,14 @@ import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { AppDataSource } from '../database/data-source';
 import { post } from '../database/entity/post';
+import {v4} from 'uuid'
 
 @Injectable()
 export class PostService {
   repo=AppDataSource.getRepository(post)
   async create(createPostDto: CreatePostDto) {
     let create = createPostDto;
+    create.id_post = v4();
     return await this.repo.save(create);
   }
 
@@ -16,19 +18,19 @@ export class PostService {
     return await this.repo.find()
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     return await this.repo.findBy({
       id_post:id
     });
   }
 
-  async update(id: number, updatePostDto: UpdatePostDto) {
+  async update(id: string, updatePostDto: UpdatePostDto) {
     let update=updatePostDto;
     update.id_post=id;
     return this.repo.save(update)
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     let remove = await this.repo.findOneBy({
       id_post:id
     })

@@ -1,10 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryColumn, Column } from "typeorm"
 
 @Entity()
 export class categ_serv {
 
-    @PrimaryGeneratedColumn()
-    id_serv: number
+    @PrimaryColumn()
+    id_serv: string
 
     @Column()
     desc_serv: string

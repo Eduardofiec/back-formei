@@ -7,14 +7,14 @@ import {
 import { Type } from 'class-transformer';
 
 export class CreateAcessaDto {
-    id_acessa: number
+    id_acessa: string
     @IsDate()
     @Type(() => Date)
     data: Date
     hora:string
     @Length(20,90)
     endereco_mac: boolean
-    constructor(id_acessa,data,hora, endereco_mac){
+    constructor(id_acessa: string,data: Date,hora: string, endereco_mac: boolean){
         this.id_acessa=id_acessa;
         this.data=data;
         this.hora=hora;

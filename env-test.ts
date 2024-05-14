@@ -1,2 +1,3 @@
-import dotenv from 'dotenv'
-console.log(process.env)
+import * as dotenv from 'dotenv';
+dotenv.config();
+console.log(process.env.PORT)

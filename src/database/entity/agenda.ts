@@ -1,10 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, Double } from "typeorm"
+import { Entity, PrimaryColumn, Column, Double } from "typeorm"
 
 @Entity()
 export class agenda {
 
-    @PrimaryGeneratedColumn()
-    id_agenda: number
+    @PrimaryColumn()
+    id_agenda: string
 
     @Column()
     data: Date
@@ -14,6 +14,9 @@ export class agenda {
 
     @Column()
     disponivel_s_n: boolean
+
+    @Column()
+    data_exped:Date
 
 
 

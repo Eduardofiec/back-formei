@@ -4,7 +4,7 @@ import {
 
 
 export class CreateCategServDto {
-    id_serv: number
+    id_serv: string
     @Length(10,50)
     desc_serv: string
     @Length(4,80)

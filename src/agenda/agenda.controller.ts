@@ -19,16 +19,16 @@ export class AgendaController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.agendaService.findOne(+id);
+    return this.agendaService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAgendaDto: UpdateAgendaDto) {
-    return this.agendaService.update(+id, updateAgendaDto);
+    return this.agendaService.update(id, updateAgendaDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.agendaService.remove(+id);
+    return this.agendaService.remove(id);
   }
 }

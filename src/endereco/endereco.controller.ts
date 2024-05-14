@@ -19,16 +19,16 @@ export class EnderecoController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.enderecoService.findOne(+id);
+    return this.enderecoService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateEnderecoDto: UpdateEnderecoDto) {
-    return this.enderecoService.update(+id, updateEnderecoDto);
+    return this.enderecoService.update(id, updateEnderecoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.enderecoService.remove(+id);
+    return this.enderecoService.remove(id);
   }
 }

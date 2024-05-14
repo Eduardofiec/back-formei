@@ -1,10 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from "typeorm"
+import { cliente } from "./cliente"
 
 @Entity()
 export class prest_serv {
 
-    @PrimaryGeneratedColumn()
-    id_prest: number
+    @PrimaryColumn()
+    id_prest: string
 
     @Column()
     cnpj_cpf: string
@@ -21,5 +22,6 @@ export class prest_serv {
     @Column()
     senha: string
 
-   
+    @Column()
+    url_prest:string
 }
