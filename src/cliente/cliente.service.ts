@@ -23,7 +23,7 @@ export class ClienteService {
   }
 
   async findOne(id: string) {
-    return await this.repo.findBy({
+    return await this.repo.findOneBy({
       id_cliente:id
     });
   }

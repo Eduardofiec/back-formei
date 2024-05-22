@@ -14,6 +14,8 @@ export class PrestServService {
 
   async create(createPrestServDto: CreatePrestServDto) {
     let create=createPrestServDto;
+    const passwordHash = await hash(create.senha, 8)
+    create.senha =  passwordHash;
     create.id_prest= v4()
     return await this.repo.save(create)
   }
@@ -23,7 +25,7 @@ export class PrestServService {
   }
 
   async findOne(id: string) {
-    return await this.repo.findBy({
+    return await this.repo.findOneBy({
       id_prest:id
     });
   }
