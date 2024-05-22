@@ -10,9 +10,13 @@ import { CategServModule } from './categ_serv/categ_serv.module';
 import { AgendaModule } from './agenda/agenda.module';
 import { ComentarioModule } from './comentario/comentario.module';
 import { AuthModule } from 'auth/auth.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
-  imports: [ClienteModule, CategServModule, AgendaModule, AcessaModule, PostModule, EnderecoModule, PrestServModule, ComentarioModule, AuthModule],
+  imports: [ClienteModule, CategServModule, AgendaModule, AcessaModule, PostModule, EnderecoModule, PrestServModule, ComentarioModule, AuthModule, JwtModule.register({
+    secret: 'oooooookenjiii', 
+    signOptions: { expiresIn: '1h' }, 
+  }),],
   controllers: [AppController],
   providers: [AppService],
 })
