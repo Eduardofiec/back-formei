@@ -15,11 +15,13 @@ export class CreateAuthdto {
     @IsEmail()
     email : string;
     pass: string;
-    constructor(id_cliente: string,nome: string,senha: string,telefone: string,email: string){
+    tipo: string;
+    constructor(id_cliente: string,nome: string,senha: string,telefone: string,email: string, tipo:string){
         this.id = id_cliente
         this.nome = nome
         this.senha = senha
         this.telefone = telefone
         this.email = email
+        this.tipo = tipo
     }
 }
