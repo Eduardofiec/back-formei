@@ -1,4 +1,5 @@
-import { Entity, OneToMany, PrimaryGeneratedColumn, Column, PrimaryColumn, JoinTable} from "typeorm";
+import { Entity, OneToMany, PrimaryGeneratedColumn, Column, PrimaryColumn, JoinTable, OneToOne} from "typeorm";
+import { comentario } from "./comentario";
 import { post } from "./post";
 
 @Entity()
@@ -18,4 +19,8 @@ export class cliente {
     
     @Column()
     email: string
+
+    @OneToOne(()=> comentario, comentario=> comentario.id_comentario)
+    id_comentario: comentario
+
 }

@@ -13,11 +13,13 @@ export class CreateEnderecoDto {
     cidade: string
     @Length(5,50)
     bairro: string
-    constructor(id_endereco: string,cep: string,numero: number, cidade: string,bairro: string){
+id_prest:string
+    constructor(id_endereco: string,cep: string,numero: number, cidade: string,bairro: string, id_prest:string){
         this.id_endereco=id_endereco;
         this.cep=cep;
         this.numero=numero;
         this.cidade=cidade;
         this.bairro=bairro;
+        this.id_prest = id_prest
     } 
 }

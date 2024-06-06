@@ -4,12 +4,13 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { AppDataSource } from '../database/data-source';
 import { post } from '../database/entity/post';
 import {v4} from 'uuid'
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class PostService {
   repo=AppDataSource.getRepository(post)
   async create(createPostDto: CreatePostDto) {
-    let create = createPostDto;
+    let create = plainToClass(post,createPostDto);
     create.id_post = v4();
     return await this.repo.save(create);
   }
@@ -25,7 +26,7 @@ export class PostService {
   }
 
   async update(id: string, updatePostDto: UpdatePostDto) {
-    let update=updatePostDto;
+    let update=plainToClass(post,updatePostDto);
     update.id_post=id;
     return this.repo.save(update)
   }

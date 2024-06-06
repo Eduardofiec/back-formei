@@ -1,6 +1,5 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import { acessa } from "./entity/acessa";
 import { agenda } from "./entity/agenda";
 import { categ_serv } from "./entity/categ_serv";
 import { cliente } from "./entity/cliente";
@@ -19,10 +18,16 @@ export const AppDataSource = new DataSource({
     password: "1234",
     database: "teste_for",
     synchronize: true,
-    logging: false,
-    entities: [prest_serv, cliente,post,acessa,agenda,categ_serv,endereco, comentario],
-    migrations: [],
+    logging: true,
+    entities: [prest_serv, cliente,post,agenda,categ_serv,endereco, comentario],
+    migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
     subscribers: [],
 })
 
-AppDataSource.initialize();
+AppDataSource.initialize()
+  .then(() => {
+    console.log('Data Source has been initialized!');
+  })
+  .catch((err) => {
+    console.error('Error during Data Source initialization:', err);
+  });

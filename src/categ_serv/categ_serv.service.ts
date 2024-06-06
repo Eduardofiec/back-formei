@@ -4,12 +4,13 @@ import { UpdateCategServDto } from './dto/update-categ_serv.dto';
 import {AppDataSource} from '../database/data-source'
 import { categ_serv } from '../database/entity/categ_serv';
 import {v4} from 'uuid'
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class CategServService {
   repo=AppDataSource.getRepository(categ_serv);
   async create(createCategServDto: CreateCategServDto) {
-    let create = createCategServDto;
+    let create = plainToClass(categ_serv, createCategServDto);
     create.id_serv = v4();
     return await this.repo.save(create);
   }
@@ -25,7 +26,7 @@ export class CategServService {
   }
 
   async update(id: string, updateCategServDto: UpdateCategServDto) {
-    let update=updateCategServDto;
+    let update=plainToClass(categ_serv, updateCategServDto);
     update.id_serv=id;
     return this.repo.save(update)
   }

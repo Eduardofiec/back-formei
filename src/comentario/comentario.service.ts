@@ -5,13 +5,14 @@ import { CreateComentarioDto } from './dto/create-comentario.dto';
 import { UpdateComentarioDto } from './dto/update-comentario.dto';
 import {v4} from 'uuid'
 import { cliente } from 'database/entity/cliente';
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class ComentarioService {
   repo = AppDataSource.getRepository(comentario);
 
   async create(createComentarioDto: CreateComentarioDto) {
-    let create = createComentarioDto;
+    let create = plainToClass(comentario, createComentarioDto);
     create.id_comentario = v4();
     return await this.repo.save(create);
   }
@@ -32,7 +33,7 @@ export class ComentarioService {
   }
 
   update(id: string, updateComentarioDto: UpdateComentarioDto) {
-    let update = updateComentarioDto
+    let update = plainToClass(comentario, updateComentarioDto)
      update.id_comentario = id
     return this.repo.save(update);
   }

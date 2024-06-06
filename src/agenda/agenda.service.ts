@@ -4,12 +4,13 @@ import { UpdateAgendaDto } from './dto/update-agenda.dto';
 import { AppDataSource } from '../database/data-source';
 import { agenda } from '../database/entity/agenda';
 import {v4} from 'uuid'
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class AgendaService {
   repo=AppDataSource.getRepository(agenda)
   async create(createAgendaDto: CreateAgendaDto) {
-    let create = createAgendaDto;
+    let create = plainToClass(agenda, createAgendaDto);
     create.id_agenda = v4();
     return await this.repo.save(create);
   }
@@ -25,7 +26,7 @@ export class AgendaService {
   }
 
   async update(id: string, updateAgendaDto: UpdateAgendaDto) {
-    let update=updateAgendaDto;
+    let update=plainToClass(agenda, updateAgendaDto);
     update.id_agenda=id;
     return this.repo.save(update)
   }

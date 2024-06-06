@@ -1,4 +1,6 @@
-import { Entity, PrimaryColumn, Column } from "typeorm"
+import { Entity, PrimaryColumn, Column, OneToMany, OneToOne } from "typeorm"
+import { post } from "./post";
+import { prest_serv } from "./prest_serv";
 
 @Entity()
 export class categ_serv {
@@ -11,4 +13,10 @@ export class categ_serv {
 
     @Column()
     nome: string
+
+    @OneToMany(() => post, post => post.id_post)
+    categ_serv: post;
+
+    @OneToOne(() => prest_serv, prest_serv => prest_serv.id_prest)
+    id_prest: prest_serv;
 }

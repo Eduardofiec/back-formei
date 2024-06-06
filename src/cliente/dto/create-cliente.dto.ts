@@ -14,11 +14,14 @@ export class CreateClienteDto {
     telefone : string;
     @IsEmail()
     email : string;
-    constructor(id_cliente: string,nome: string,senha: string,telefone: string,email: string){
+    id_comentario: string
+
+    constructor(id_cliente: string,nome: string,senha: string,telefone: string,email: string, id_comentario: string){
         this.id_cliente = id_cliente
         this.nome = nome
         this.senha = senha
         this.telefone = telefone
         this.email = email
+        this.id_comentario = id_comentario
     }
 }

@@ -1,4 +1,5 @@
-import { Entity, PrimaryColumn, Column } from "typeorm"
+import { Entity, PrimaryColumn, Column, OneToOne } from "typeorm"
+import { prest_serv } from "./prest_serv"
 
 @Entity()
 export class endereco {
@@ -18,5 +19,7 @@ export class endereco {
     @Column()
     bairro: string
 
+    @OneToOne(() => prest_serv, prest_serv => prest_serv.id_prest)
+    id_prest: prest_serv;
     
 }

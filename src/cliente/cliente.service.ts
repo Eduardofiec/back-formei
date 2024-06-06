@@ -6,16 +6,18 @@ import { cliente } from '../database/entity/cliente';
 import { hash } from 'bcrypt';
 import {v4} from 'uuid'
 import { HttpException } from '@nestjs/common/exceptions';
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class ClienteService {
   repo= AppDataSource.getRepository(cliente);
   async create(createClienteDto: CreateClienteDto) {
-    let create = createClienteDto;
+    let create = plainToClass(cliente, createClienteDto);
     const passwordHash = await hash(create.senha, 8)
     create.senha =  passwordHash;
     create.id_cliente= v4()
-    return await this.repo.save(create);
+    const user = await this.repo.save(create);
+    return user
   }
 
   async findAll() {
@@ -30,7 +32,7 @@ export class ClienteService {
 
     confsenha: string;
   async update(id: string, updateClienteDto: UpdateClienteDto, ConfSenhaDto:ConfSenhaDto) {
-    let update=updateClienteDto
+    let update=plainToClass(cliente, updateClienteDto)
     update.id_cliente=id;
       if( update.senha === ConfSenhaDto.confsenha){
       const passwordHash = await hash(update.senha, 8)

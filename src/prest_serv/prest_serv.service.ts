@@ -5,6 +5,7 @@ import { AppDataSource } from '../database/data-source';
 import { prest_serv} from '../database/entity/prest_serv';
 import { hash } from 'bcrypt';
 import {v4} from "uuid"
+import { plainToClass } from 'class-transformer';
 
 
 @Injectable()
@@ -13,7 +14,8 @@ export class PrestServService {
   repo=AppDataSource.getRepository(prest_serv);
 
   async create(createPrestServDto: CreatePrestServDto) {
-    let create=createPrestServDto;
+    //aqui está sendo feito uma conversão de tipo DTO para um DeepPartial com o 'PlainToClass', no caso seria o que a função 'save' espera para funcionar
+    let create=plainToClass(prest_serv,createPrestServDto);
     const passwordHash = await hash(create.senha, 8)
     create.senha =  passwordHash;
     create.id_prest= v4()
@@ -30,18 +32,17 @@ export class PrestServService {
     });
   }
 
-  async update(id: string, updatePrestServDto: UpdatePrestServDto, ConfSenhaDto:ConfSenhaDto) {
-    let update=updatePrestServDto;
-    update.id_prest=id;
-    if( update.senha === ConfSenhaDto.confsenha){
-      const passwordHash = await hash(update.senha, 8)
-      update.senha = passwordHash
-       return await this.repo.save(update)
-    }else{
-      throw new HttpException('Forbidden', HttpStatus.FORBIDDEN)
-      
+  async update(id: string, updatePrestServDto: UpdatePrestServDto, ConfSenhaDto: ConfSenhaDto) {
+    let update = plainToClass(prest_serv, updatePrestServDto);
+    update.id_prest = id;
+    if (update.senha === ConfSenhaDto.confsenha) {
+        const passwordHash = await hash(update.senha, 8)
+        update.senha = passwordHash;
+        return await this.repo.save(update);
+    } else {
+        throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
     }
-  }
+}
 
   async remove(id: string) {
     let remove=await this.repo.findOneBy({

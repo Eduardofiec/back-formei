@@ -40,7 +40,10 @@ export class CreatePrestServDto implements prest_serv{
     @Length(1,2)
     avaliacao:number
     url_prest:string 
-    constructor(id_prest: string, senha: string, nome: string,cnpj_cpf: string, telefone: string, avaliacao: number, url_prest:string){
+    id_post:string
+    id_agenda:string
+    id_serv:string
+    constructor(id_prest: string, senha: string, nome: string,cnpj_cpf: string, telefone: string, avaliacao: number, url_prest:string, id_post:string, id_agenda:string, id_serv:string){
         this.cnpj_cpf=cnpj_cpf
         this.id_prest=id_prest
         this.nome=nome
@@ -48,5 +51,8 @@ export class CreatePrestServDto implements prest_serv{
         this.telefone=telefone
         this.avaliacao=avaliacao
         this.url_prest=url_prest
+        this.id_agenda = id_agenda;
+        this;id_post = id_post;
+        this.id_serv = id_serv
     }
 }

@@ -4,13 +4,14 @@ import { UpdateEnderecoDto } from './dto/update-endereco.dto';
 import { AppDataSource } from '../database/data-source';
 import { endereco } from '../database/entity/endereco';
 import {v4} from 'uuid'
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class EnderecoService {
   repo=AppDataSource.getRepository(endereco)
   
   async create(createEnderecoDto: CreateEnderecoDto) {
-    let create = createEnderecoDto;
+    let create = plainToClass(endereco, createEnderecoDto);
     create.id_endereco = v4();
     return await this.repo.save(create);
   }
@@ -26,7 +27,7 @@ export class EnderecoService {
   }
 
   async update(id: string, updateEnderecoDto: UpdateEnderecoDto) {
-    let update=updateEnderecoDto;
+    let update=plainToClass(endereco, updateEnderecoDto);
     update.id_endereco=id;
     return this.repo.save(update)
   }
