@@ -20,7 +20,7 @@ export const AppDataSource = new DataSource({
     synchronize: true,
     logging: true,
     entities: [prest_serv, cliente,post,agenda,categ_serv,endereco, comentario],
-    migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
+    migrations: [],
     subscribers: [],
 })
 
